@@ -18,8 +18,7 @@ class bcolors:
 
 dot_files_path = Path(__file__).parent
 ignore_names = ['install.py', 'README.md', ]
-# FIXME: Use actual home folder
-home = Path(f'/home/{getpass.getuser()}/Downloads') 
+home = Path(f'/home/{getpass.getuser()}') 
 backup_path = home / ".dotfiles_backup"
 
 
