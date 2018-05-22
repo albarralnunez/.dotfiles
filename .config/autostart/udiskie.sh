@@ -1,3 +1,3 @@
 #!/bin/bash
 
-udiskie --no-automount --no-notify --tray --use-udisks2 &
+udiskie --tray --use-udisks2 &

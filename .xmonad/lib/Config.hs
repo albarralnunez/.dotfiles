@@ -111,12 +111,14 @@ switchWorkspaceToWindow w = windows $ do
 
 workspaces' = ["\xf269", "\xf120", "\xe7b5", "\xf086", "\xf1d0", "\xf1c0", "\xe727", "\xf11b", "\xf6ed"]
 
-player = "spotify"
 chats = "rambox"
+player = "spotify"
+mailing = "thunderbird-nightly"
 
 scratchpads =
     [ (NS player player (className =? "Spotify") doFullFloat )
-    , (NS chats chats (className =? "Rambox") doFullFloat ) ]
+    , (NS chats chats (className =? "Rambox") doFullFloat )
+    , (NS mailing mailing (className =? "Thunderbird") doFullFloat ) ]
 
 myManageHook :: ManageHook
 myManageHook =
@@ -129,15 +131,15 @@ myManageHook =
         -- title instead. Title will later change depending on the song
         -- playing.
         , className =? "Spotify"          --> doFullFloat
-        , className =? "Rambox"           --> doFullFloat
+        , className =? "Rambox"           --> doFloat
         , className =? "MPlayer"          --> doFloat
         , className =? "Gimp"             --> doFloat
+        , className =? "Thunderbird"      --> doFloat
         -- Flash :(
         , className =? "Plugin-container" --> doFloat
         , className =? "mpv"              --> doFloat
         , className =? "feh"              --> doFloat
         , className =? "Gpick"            --> doFloat
-        , className =? "Thunar"           --> doFloat
         , className =? "Qalculate-gtk"    --> doFloat
         , className =? "Pcmanfm"          --> doFloat
         , className =? "Lightscreen"      --> doFloat
@@ -224,6 +226,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_s), submap . M.fromList $
         [ ((0, xK_s), namedScratchpadAction scratchpads player)
         , ((0, xK_c), namedScratchpadAction scratchpads chats)
+        , ((0, xK_m), namedScratchpadAction scratchpads mailing)
         ])
 
     -- Struts...

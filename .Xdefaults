@@ -34,8 +34,8 @@ URxvt*scrollBar:         false
 URxvt*scrollBar_right:   false
 
 URxvt*transparent:  true
-URxvt*shading:      50
-URxvt*depth:        32
+URxvt*shading:      60
+URxvt*depth:        50
 URxvt*background:   rgba:0000/0000/0200/6464
 URxvt.font:         xft:DejaVu Sans Mono Nerd Font:size=14:antialias=true:
 URxvt.boldFont:     xft:DejaVu Sans Mono Nerd Font:bold:size=14:antialias=true:

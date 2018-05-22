@@ -17,7 +17,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 dot_files_path = Path(__file__).parent
-ignore_names = ['install.py', 'README.md', ]
+ignore_names = ['install.py', 'README.md', '.git', '.gitignore']
 home = Path(f'/home/{getpass.getuser()}') 
 backup_path = home / ".dotfiles_backup"
 
