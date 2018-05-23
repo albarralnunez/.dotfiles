@@ -1,5 +1,5 @@
 #!/bin/sh
- 
+
 .local/usr/bin/polybar.sh
 
 if [ -d $HOME/.config/autostart ] ; then
@@ -10,5 +10,5 @@ if [ -d $HOME/.config/autostart ] ; then
 fi
 
 # Launch WM
-exec xmonad 
+exec xmonad
 
