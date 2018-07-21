@@ -70,12 +70,9 @@ filetype plugin indent on    " required
 
 " Make Vim more useful
 set nocompatible
-
 set clipboard=unnamed
 " Enhance command-line completion
 set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 " Optimize for fast terminal connections
@@ -89,6 +86,10 @@ let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
+
+if !has('nvim')
+    set ttymouse=xterm2
+endif
 
 set viminfo+=! " make sure vim history works
 map <C-J> <C-W>j<C-W>_ " open and maximize the split below
@@ -179,7 +180,8 @@ let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
+
+" set term=xterm-256color
 set termencoding=utf-8
 
 

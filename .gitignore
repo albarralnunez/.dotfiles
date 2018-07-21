@@ -12,6 +12,7 @@
 
 !.local/usr/*/*
 
+!.config/nvim/*
 !.config/autostart/*
 !.config/dunst/dunstrc
 !.config/htop/htoprc

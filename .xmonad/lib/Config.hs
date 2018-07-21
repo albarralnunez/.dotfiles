@@ -74,7 +74,7 @@ myLayouts = fullscreenToggle
     fullscreenToggle = mkToggle (single NBFULL)
     tiled = renamed [Replace "\xf036"]
         $ avoidStruts
-        $ smartSpacingWithEdge 1
+        $ smartSpacingWithEdge 2
         $ smartBorders
         $ minimize
         $ B.boringWindows
@@ -113,7 +113,7 @@ workspaces' = ["\xf269", "\xf120", "\xe7b5", "\xf086", "\xf1d0", "\xf1c0", "\xe7
 
 chats = "rambox"
 player = "spotify"
-mailing = "thunderbird-nightly"
+mailing = "thunderbird"
 
 scratchpads =
     [ (NS player player (className =? "Spotify") doFullFloat )
@@ -217,8 +217,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_Down), withFocused $ keysResizeWindow (0, 20) (0, 0))
 
     -- Minimize stuff
-    , ((modm, xK_v), withFocused minimizeWindow)
-    , ((modm .|. shiftMask, xK_v), sendMessage RestoreNextMinimizedWin)
+    -- , ((modm, xK_v), withFocused minimizeWindow)
+    -- , ((modm .|. shiftMask, xK_v), sendMessage RestoreNextMinimizedWin)
 
     , ((modm, xK_g), placeFocused $ smart (0.5, 0.5))
 

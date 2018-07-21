@@ -79,7 +79,7 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.orange}
 tail = false
-interval = 120
+interval = 480
 
 [module/volume]
 type = internal/alsa

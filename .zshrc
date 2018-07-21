@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/usr/bin:/usr/local/bin:$PATH
+export PATH=/opt/anaconda/bin:$HOME/.local/usr/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
@@ -27,5 +27,9 @@ export SYSTEMD_EDITOR="/bin/vim"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 source ~/.aliasesrc
+
+eval "$(direnv hook zsh)"
+
+eval "$(pyenv init -)"
 
 DEFAULT_USER=`whoami`
