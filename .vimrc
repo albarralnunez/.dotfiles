@@ -1,72 +1,97 @@
-" set the runtime path to include Vundle and initialize
-set rtp+=~/usr/share/vim/vimfiles/autoload/vundle.vim
+" Author: Jake Zimmerman <jake@zimmerman.io>
+"
+" How I configure Vim :P
+"
 
+" Gotta be first
+set nocompatible
+
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-if has("gui_running")
-    let s:uname = system("uname")
-    if s:uname == "Darwin\n"
-        set guifont=Inconsolata\ for\ Powerline:h15
-    endif
-endif
-" let Vundle manage Vundle, required
+
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" ----- Making Vim look good ------------------------------------------
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline-themes/vim-airline-themes'
+" ----- Vim as a programmer's text editor -----------------------------
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-scripts/a.vim'
+
+" ----- Working with Git ----------------------------------------------
+Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
+" ----- Other text editing features -----------------------------------
+Plugin 'Raimondi/delimitMate'
 
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" ----- man pages, tmux -----------------------------------------------
+Plugin 'jez/vim-superman'
+Plugin 'christoomey/vim-tmux-navigator'
 
-" Filesystem navigation
-Plugin 'scrooloose/nerdtree'
+" ----- Syntax plugins ------------------------------------------------
+Plugin 'jez/vim-c0'
+Plugin 'jez/vim-ispc'
 
-" Search a project by filename to open
-Plugin 'wincent/command-t'
+" ---- Extras/Advanced plugins ----------------------------------------
+" Highlight and strip trailing whitespace
+Plugin 'ntpeters/vim-better-whitespace'
+" Easily surround chunks of text
+Plugin 'tpope/vim-surround'
+" Align CSV files at commas, align Markdown tables, and more
+Plugin 'godlygeek/tabular'
+" Automaticall insert the closing HTML tag
+Plugin 'HTML-AutoCloseTag'
+" All the other syntax plugins I use
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'tpope/vim-liquid'
+Plugin 'cakebaker/scss-syntax.vim'
 
-" Nice parentheses
-Plugin 'git://github.com/kien/rainbow_parentheses.vim.git'
+call vundle#end()
 
-" Live syntax checking for many languages, supports Vim 8's new features such as asynchronous jobs to ensure it doesn't freeze up Vim while running.
-Plugin 'w0rp/ale'
-" Syntastic is a syntax checking plugin for Vim created by Martin Grenfell. It
-" runs files through external syntax checkers and displays any resulting
-" errors to the user. This can be done on demand, or automatically as files
-" are saved. If syntax errors are detected, the user is notified and is happy
-" because they didn't have to compile their code or execute their script to
-" find them.
-" Plugin 'git://github.com/vim-syntastic/syntastic.git'
+filetype plugin indent on
 
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" --- General settings ---
+set backspace=indent,eol,start
+set ruler
+set relativenumber
+set showcmd
+set incsearch
+set hlsearch
 
-"Scala Related pluguins
-Bundle 'derekwyatt/vim-scala'
+syntax on
 
-"This is a Vim plugin that allows sbt to be used from within Vim.
-Plugin 'git://github.com/ktvoelker/sbt-vim.git'
+set mouse=a
 
-"This syntax file displays unicode characters for some Scala operators and
-"built-in functions.
-Plugin 'git://github.com/mpollmeier/vim-scalaConceal.git'
+" We need this for plugins like Syntastic and vim-gitgutter which put symbols
+" in the sign column.
+hi clear SignColumn
 
-" This is an sbt plugin that generates a quickfix file that can be used with Vim.
-Plugin 'https://github.com/dscleaver/sbt-quickfix.git'
+" ----- Plugin-Specific Settings --------------------------------------
+
+" ----- altercation/vim-colors-solarized settings -----
+" Toggle this to "light" for light colorscheme
+set background=dark
+
+" Uncomment the next line if your terminal is not configured for solarized
+let g:solarized_termcolors=256
+
+" Set the colorscheme
+" colorscheme solarized
 
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
+" ----- bling/vim-airline settings -----
 
 " Make Vim more useful
 set nocompatible
@@ -94,7 +119,7 @@ endif
 set viminfo+=! " make sure vim history works
 map <C-J> <C-W>j<C-W>_ " open and maximize the split below
 map <C-K> <C-W>k<C-W>_ " open and maximize the split above
-set wmh=0 " reduces splits to a single line 
+set wmh=0 " reduces splits to a single line
 
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
@@ -172,7 +197,7 @@ set smartindent
 " Enable smart-tabs
 set smarttab
 " Number of spaces per Tab
-set softtabstop=4	
+set softtabstop=4
 " Relative line number
 set relativenumber
 set guifont=Inconsolata\ for\ Powerline:h15
@@ -201,3 +226,70 @@ set tags=./tags;
 
 map <F12> :!ctags -R -f ./.git/tags .<CR>
 
+" Fancy arrow symbols, requires a patched font
+" To install a patched font, run over to
+"     https://github.com/abertsch/Menlo-for-Powerline
+" download all the .ttf files, double-click on them and click "Install"
+" Finally, uncomment the next line
+let g:airline_powerline_fonts = 1
+
+" Show PASTE if in paste mode
+let g:airline_detect_paste=1
+
+" Show airline for tabs too
+let g:airline#extensions#tabline#enabled = 1
+
+" Use the solarized theme for the Airline status bar
+let g:airline_theme='solarized'
+
+" ----- jistr/vim-nerdtree-tabs -----
+" Open/close NERDTree Tabs with \t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+" To have NERDTree always open on startup
+" let g:nerdtree_tabs_open_on_console_startup = 1
+
+
+" ----- scrooloose/syntastic settings -----
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
+
+
+" ----- xolox/vim-easytags settings -----
+" Where to look for tags files
+set tags=./tags;,~/.vimtags
+" Sensible defaults
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+
+" ----- majutsushi/tagbar settings -----
+" Open/close tagbar with \b
+nmap <silent> <leader>b :TagbarToggle<CR>
+" Uncomment to open tagbar automatically whenever possible
+"autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+
+" ----- airblade/vim-gitgutter settings -----
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airline#extensions#hunks#non_zero_only = 1
+
+
+" ----- Raimondi/delimitMate settings -----
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
+" ----- jez/vim-superman settings -----
+" better man page support
+noremap K :SuperMan <cword><CR>
