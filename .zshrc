@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/opt/anaconda/bin:$HOME/.local/usr/bin:/usr/local/bin:$PATH
+#export PATH=/opt/anaconda/bin:$HOME/.local/usr/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/usr/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
@@ -21,12 +22,13 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
-export SYSTEMD_EDITOR="/bin/vim" 
+export SYSTEMD_EDITOR="/bin/vim"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 source ~/.aliasesrc
+source ~/.aliasesrc.local
 
 eval "$(direnv hook zsh)"
 

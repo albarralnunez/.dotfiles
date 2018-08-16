@@ -1,6 +1,7 @@
 #!/bin/sh
 # updates=$(checkupdates 2>/dev/null | wc -l)
-updates=$(yaourt --stats | awk '/Packages out of date: / {print $5}' 2> /dev/null)
-out="Updates: ${updates}"
+yay -Pn > /tmp/updatesyay.tmp
+updates=$(awk '{if ($1 = "Get") print 0; else print $updates;}' /tmp/updatesyay.tmp)
+out="${updates}"
 echo "${out}"
 

@@ -1,0 +1,15 @@
+#!/bin/python
+
+import pathlib
+import re
+
+regex = re.compile(r"^.*nordvpn_([a-zA-Z0-9_]+)\.service.*$")
+status = "Off"
+
+tmp_path = pathlib.Path("/tmp")
+elements = list(tmp_path.glob("*-openvpn-client@nordvpn*"))
+if elements:
+    path_name = elements[0].name
+    status = regex.match(path_name).group(1)
+print(status)
+

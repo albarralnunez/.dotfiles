@@ -52,8 +52,8 @@ font-0 = DejaVu Sans Mono Nerd Font:pixelsize=10;0
 font-1 = DejaVu Sans Mono Nerd Font:size=7;-1
 
 modules-left = xmonad
-modules-center = music 
-modules-right = updates temperature memory cpu volume battery date
+modules-center = music
+modules-right = nordvpn temperature memory cpu volume battery date
 
 tray-position = right
 tray-padding = 2
@@ -80,6 +80,15 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.orange}
 tail = false
 interval = 480
+
+[module/nordvpn]
+type = custom/script
+exec = $HOME/.local/usr/bin/nordvpn-status
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.white}
+tail = false
+interval = 10
 
 [module/volume]
 type = internal/alsa

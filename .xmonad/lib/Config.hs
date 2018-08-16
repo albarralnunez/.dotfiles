@@ -81,9 +81,9 @@ myLayouts = fullscreenToggle
         $ myIM
         $ Tall 1 (3 / 100) (1 / 2)
 --     tornado = renamed [Replace "\xf036"]
---        $ avoidStruts 
+--        $ avoidStruts
 --        $ smartSpacingWithEdge 1
---        $ smartBorders 
+--        $ smartBorders
 --        $ emptyBSP
     tabs = renamed [Replace "\xf2d1"]
         $ avoidStruts
@@ -114,11 +114,14 @@ workspaces' = ["\xf269", "\xf120", "\xe7b5", "\xf086", "\xf1d0", "\xf1c0", "\xe7
 chats = "rambox"
 player = "spotify"
 mailing = "thunderbird"
+firewallCommand = "sudo gufw"
+firewall = "gufw"
 
 scratchpads =
-    [ (NS player player (className =? "Spotify") doFullFloat )
-    , (NS chats chats (className =? "Rambox") doFullFloat )
-    , (NS mailing mailing (className =? "Thunderbird") doFullFloat ) ]
+    [ (NS player player (className =? "Spotify") doFloat )
+    , (NS chats chats (className =? "Rambox") doFloat )
+    , (NS firewall firewallCommand (className =? "Gufw.py") doFloat )
+    , (NS mailing mailing (className =? "Thunderbird") doFloat ) ]
 
 myManageHook :: ManageHook
 myManageHook =
@@ -130,7 +133,8 @@ myManageHook =
         -- When Spotify is started the WM_CLASS is unset so here we match on
         -- title instead. Title will later change depending on the song
         -- playing.
-        , className =? "Spotify"          --> doFullFloat
+        , className =? "Spotify"          --> doFloat
+        , className =? "Gufw.py"          --> doFloat
         , className =? "Rambox"           --> doFloat
         , className =? "MPlayer"          --> doFloat
         , className =? "Gimp"             --> doFloat
@@ -227,6 +231,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         [ ((0, xK_s), namedScratchpadAction scratchpads player)
         , ((0, xK_c), namedScratchpadAction scratchpads chats)
         , ((0, xK_m), namedScratchpadAction scratchpads mailing)
+        , ((0, xK_b), namedScratchpadAction scratchpads firewall)
         ])
 
     -- Struts...
