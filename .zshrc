@@ -16,6 +16,11 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent`
+    ssh-add
+fi
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'

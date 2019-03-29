@@ -114,6 +114,8 @@ workspaces' = ["\xf269", "\xf120", "\xe7b5", "\xf086", "\xf1d0", "\xf1c0", "\xe7
 chats = "rambox"
 player = "spotify"
 mailing = "thunderbird"
+notesCommand = "nixnote2 show_window"
+notes = "nixnote2"
 firewallCommand = "sudo gufw"
 firewall = "gufw"
 
@@ -121,6 +123,7 @@ scratchpads =
     [ (NS player player (className =? "Spotify") doFloat )
     , (NS chats chats (className =? "Rambox") doFloat )
     , (NS firewall firewallCommand (className =? "Gufw.py") doFloat )
+    , (NS notes notesCommand (className =? "nixnote2") doFloat )
     , (NS mailing mailing (className =? "Thunderbird") doFloat ) ]
 
 myManageHook :: ManageHook
@@ -232,6 +235,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , ((0, xK_c), namedScratchpadAction scratchpads chats)
         , ((0, xK_m), namedScratchpadAction scratchpads mailing)
         , ((0, xK_b), namedScratchpadAction scratchpads firewall)
+        , ((0, xK_n), namedScratchpadAction scratchpads notes)
         ])
 
     -- Struts...

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+autorandr --load `autorandr --detected`
+
 .local/usr/bin/polybar.sh
 
 if [ -d $HOME/.config/autostart ] ; then

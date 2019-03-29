@@ -1,4 +1,4 @@
 #!/bin/bash
 
-feh --bg-scale -no-fehbg ~/.wallpapers/wallpaper1   
+feh --bg-scale -no-fehbg ~/.wallpapers/wallpaper2
 
